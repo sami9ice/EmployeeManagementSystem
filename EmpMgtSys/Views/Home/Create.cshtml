@@ -1,0 +1,62 @@
+﻿@model EmpMgtSys.Models.Employee
+
+@{
+    ViewBag.Title = "Home Index";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+<h2 style="color:slategrey">Add Employee</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal" id="myForm">
+    <h4></h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <label class="control-label col-md-2"> First Name</label>
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2"> Last Name</label>
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2"> Date Of Birth </label>
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+            @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2"> Department</label>
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.department, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.department, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" id="widget" value="submit" class="btn btn-primary" onclick="return confirm('Are you sure you want Add?')" />
+        </div>
+    </div>
+</div>
+
+
+
+
+}
+
+<div class="col-md-6">
+    @Html.ActionLink("Back to List", "Index")
+</div>
+

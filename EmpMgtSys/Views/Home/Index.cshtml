@@ -1,0 +1,107 @@
+﻿@model IEnumerable<EmpMgtSys.Models.Employee>
+
+@{
+    ViewBag.Title = "Home Index";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+<h2>Manage Employee</h2>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="header-title">Employee   </h4>
+
+                <p class="text-muted font-13 mb-4">
+                    List Of Employees
+                </p>
+                @if (HttpContext.Current.Session[0] == "Admin")
+                {
+                    <p class="text-muted font-13 mb-4">
+                        <a class="btn btn-primary" style=" margin-bottom:10px" href="/Home/Create" id="toast"><i class="fa fa-plus"></i> Add New</a>
+
+
+                    </p>
+                }
+
+                <div style="color:blue;">
+
+                    @ViewBag.ResultMessage
+
+                </div>
+
+                <table id="basic-datatable" class="table dt-responsive nowrap">
+                    <thead>
+                        <tr>
+                            <th>FirstName</th>
+                            <th> LastName</th>
+                            <th>Date Of Birth</th>
+                            <th>Department</th>
+
+
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FirstName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LastName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DOB)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.department)
+                                </td>
+
+
+                            </tr>
+
+                        }
+
+
+
+                    </tbody>
+                </table>
+
+            </div> <!-- end card body-->
+        </div> <!-- end card -->
+    </div><!-- end col-->
+</div>
+<!-- end row-->
+
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+<script src="~/scripts/toastr.js"></script>
+<script>
+                        $(function () {
+                            var a = '@TempData["Success"]';
+                            if (a != '')
+                                toastr.success("", a);
+
+                            //alert("ab" + a)
+                            window.location = '#2249506';
+                        })
+</script>
+
+
+
+
+
+@*<script type="text/javascript">
+        $(document).ready(function () {
+            $("#showtoast").click(function () {
+                toastr.error("fatal error", "fatal");
+            })
+        });
+    </script>*@
+
+
+
+
+
